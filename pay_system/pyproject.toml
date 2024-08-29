@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "pay-system"
+version = "0.1.0"
+description = ""
+authors = ["elenaglu"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.1"
+python-dotenv = "^1.0.1"
+stripe = "^10.8.0"
+psycopg2-binary = "^2.9.9"
+pytest = "^8.3.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

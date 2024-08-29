@@ -1,0 +1,5 @@
+**/__pycache__/
+.idea/
+*.exe
+/pay_system/.env
+/pay_system/db/
