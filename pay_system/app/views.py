@@ -11,15 +11,15 @@ stripe.api_key = c.STRIPE_SECRET_KEY
 
 class CreateCheckoutSessionView(View):
     def post(self, request, *args, **kwargs):
-        id = self.kwargs["pk"]
-        item = Item.objects.get(id=id)
-        YOUR_DOMAIN = "http://127.0.0.1:8000"
+        item_id = self.kwargs["pk"]
+        item = Item.objects.get(id=item_id)
+        DOMAIN = "http://127.0.0.1:8000"
         checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
             line_items=[
                 {
                     'price_data': {
-                        'currency': 'ruble',
+                        'currency': 'usd',
                         'unit_amount': item.price,
                         'product_data': {
                             'name': item.name
@@ -29,11 +29,11 @@ class CreateCheckoutSessionView(View):
                 },
             ],
             metadata={
-                "id": item.id
+                "item_id": item.id
             },
             mode='payment',
-            success_url=YOUR_DOMAIN + '/success/',
-            cancel_url=YOUR_DOMAIN + '/cancel/',
+            success_url=DOMAIN + '/success/',
+            cancel_url=DOMAIN + '/cancel/',
         )
         return JsonResponse({
             'id': checkout_session.id
